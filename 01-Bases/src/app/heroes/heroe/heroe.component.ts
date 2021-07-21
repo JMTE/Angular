@@ -13,5 +13,22 @@ import { Component } from "@angular/core";
 
 export class HeroeComponent{
 
+    public nombre:string="Ironman";
+    public edad:number=33;
+
+
+    get nombreMayusculas(){
+        return this.nombre.toUpperCase();
+    }
+
+
+    public obtenerNombre():string{
+
+        return `${this.nombre} - ${this.edad}`;
+
+
+    }
+
+
 
 }
