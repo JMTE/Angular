@@ -1,7 +1,7 @@
 <p>listado de Heroes</p>
 
 
-<div *ngIf="bandera">
+<div *ngIf="bandera; else noBorrado">
     <h3>
         Heroe Borrado: <br>
         <span  *ngFor="let heroe of heroesBorrados; let i=index" >
@@ -10,8 +10,13 @@
     
         </span>
     </h3>
-    
-    </div>
+</div>
+<ng-template #noBorrado> 
+
+    <!-- Es una referencia local del lado del template  y nos sale la condicion del else del *ngif--> 
+
+    <p>No hay nada borrado</p>
+</ng-template>
     
     <button (click)="borrarHeroe()">
         Borrar
