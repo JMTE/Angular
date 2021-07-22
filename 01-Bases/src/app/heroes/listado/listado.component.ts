@@ -13,6 +13,8 @@ export class ListadoComponent {
 
   heroesBorrados:string[]=[];
 
+  bandera:boolean=false
+
   public borrarHeroe(){
 
 
@@ -27,7 +29,7 @@ export class ListadoComponent {
     
     this.heroesBorrados.push(heroeBorrado);
     
-
+    this.bandera=true;
    
 
   }
