@@ -1,0 +1,58 @@
+<h1>Estos son los heroes de DBZ
+</h1>
+
+
+
+<div class="row">
+    <div class="col">
+        <hr>
+        
+
+        <h3>
+            Personajes
+        </h3>
+
+        
+
+        <ul *ngFor="let personaje of personajes; let i=index">
+
+            <li>{{i+1}} - {{personaje.nombre}} // {{personaje.poder | number}}</li>
+             
+        </ul>
+    </div>
+
+    <div class="col">
+    
+<hr>
+
+        <h3>
+            Agregar 
+        </h3>
+
+
+    
+        <form (ngSubmit)="agregar( )" action="">
+            <input type="text" 
+            placeholder="Nombre Personaje"
+            name="nombre"
+            [(ngModel)]="nuevo.nombre"
+            >
+
+
+            <input type="number" 
+            placeholder="Poder"
+            name="poder"
+            [(ngModel)]="nuevo.poder">
+
+
+            <button type="submit">Agregar</button>
+
+
+        </form>
+    
+    </div>
+    
+    
+</div>
+    
+
