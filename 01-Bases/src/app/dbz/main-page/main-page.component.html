@@ -19,8 +19,16 @@
 <hr>
 
         <app-agregar 
-        [personajesAgregar]="personajes"
+       
         [nuevo2]="nuevo"
+        (onNuevoPersonaje)="agregarNuevoPersonaje( $event)"
+        
+        ></app-agregar>
+
+        <app-agregar 
+       
+        [nuevo2]="nuevo"
+        (onNuevoPersonaje)="agregarNuevoPersonaje( $event)"
         
         ></app-agregar>
     
