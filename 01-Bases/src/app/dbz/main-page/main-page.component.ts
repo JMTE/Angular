@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 
-interface Personaje{
+export interface Personaje{
 
   nombre:string;
   poder:number;
