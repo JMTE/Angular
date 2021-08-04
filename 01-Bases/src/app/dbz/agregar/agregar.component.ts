@@ -35,6 +35,7 @@ export class AgregarComponent {
       console.log(this.nuevo2);
       
     }
+   
 
     this.onNuevoPersonaje.emit(this.nuevo2)
 
