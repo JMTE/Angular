@@ -1,10 +1,7 @@
 import { Component } from '@angular/core';
+import { Personaje } from '../interfaces/dbz.interface';
 
-export interface Personaje{
 
-  nombre:string;
-  poder:number;
-}
 
 @Component({
   selector: 'app-main-page',
