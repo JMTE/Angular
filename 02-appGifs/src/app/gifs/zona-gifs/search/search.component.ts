@@ -21,6 +21,10 @@ export class SearchComponent {
 
     const  valor=  (this.txtBuscar.nativeElement.value); //Guardamos el valor de la caja de texto
 
+    if (valor===""){ //Si el valor introducido es cadena vacia no hace nada
+      return;
+    }
+
     this.gifservice.buscarGifs(valor); //Añadimos a nuestro array el valor nuevo
 
     this.txtBuscar.nativeElement.value="";  //Borramos el texto de la caja de texto

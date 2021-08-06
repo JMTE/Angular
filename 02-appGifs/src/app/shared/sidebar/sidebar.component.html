@@ -13,8 +13,11 @@
       <a href="#" 
       class="list-group-item list-group-item-action"
       *ngFor="let valor of historial ; let i=index"
+      
       >
-      {{valor}}
+      <!-- "historial es el metodo getter de nuestro ts" -->
+      {{valor |titlecase}}
+      <!-- Utilizamos un pipe para colocar el titulo con la primera en mayusculas -->
     </a>
 
     </div>

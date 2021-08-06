@@ -11,6 +11,7 @@ export class GifsService {
 
   get dameHistorial(){
 
+
     return [...this._historial]; //Se utiliza de este modo para romper la referencia, de la otra forma tambien funcionaria
 
   }
@@ -18,7 +19,15 @@ export class GifsService {
 
   buscarGifs(valor:string){ //Con esta funcion vamos a introducir el valor introducido por parametro(que viene de la caja) en nuestro array de strings
 
-    this._historial.unshift(valor); // Introducimos el valor al principio del array
+    valor=valor.toLowerCase(); //Para que a la hora de comparar, no nos introduzca mayusculas
+    if (!this._historial.includes(valor)){
+
+      this._historial.unshift(valor); // Introducimos el valor al principio del array
+
+    }
+
+    this._historial= this._historial.splice(0,10); //De esta manera limitamos el historial a solo 10 elementos
+
 
     console.log(this._historial); //Lo mostramos en consola
     
