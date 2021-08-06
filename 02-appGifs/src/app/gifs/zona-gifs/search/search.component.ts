@@ -1,4 +1,5 @@
 import { Component, ElementRef, ViewChild } from '@angular/core';
+import { GifsService } from '../../services/gifs.service';
 
 @Component({
   selector: 'app-search',
@@ -6,20 +7,23 @@ import { Component, ElementRef, ViewChild } from '@angular/core';
 })
 export class SearchComponent {
 
-  constructor() { }
+  
 
-  @ViewChild("txtBuscar") txtBuscar!:ElementRef<HTMLInputElement>;
+  @ViewChild("txtBuscar") txtBuscar!:ElementRef<HTMLInputElement>; //nodo para poder guardar el valor de la caja de texto
 
   //! con este signo le decimos que este elemento nunva va a ser nulo
+  constructor(private gifservice:GifsService) {
 
+    //Aqui inyectamos el servicio creado
+   }
   buscar(){
 
 
-    const  valor=  (this.txtBuscar.nativeElement.value);
+    const  valor=  (this.txtBuscar.nativeElement.value); //Guardamos el valor de la caja de texto
 
-    console.log(valor);
+    this.gifservice.buscarGifs(valor); //Añadimos a nuestro array el valor nuevo
 
-    this.txtBuscar.nativeElement.value="";
+    this.txtBuscar.nativeElement.value="";  //Borramos el texto de la caja de texto
     
     
   }
