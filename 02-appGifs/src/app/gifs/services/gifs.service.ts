@@ -12,6 +12,10 @@ export class GifsService {
 
   private _historial :string[]=[];
 
+
+
+  public resultados:any[]=[];
+
   get dameHistorial(){
 
 
@@ -41,10 +45,11 @@ export class GifsService {
     // y siempre habria que tener cuidado con los try , para ello angular tiene una herramienta, la cual tenemos
     // que descargar desde el modulo httpClientModule e inyectarla en el constructor
 
-    this.http.get("https://api.giphy.com/v1/gifs/search?api_key=z3QHy7bISBoa8Be1uuzy9hKOfcahjRI8&q=Dragon ball z&limit =10")
+    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=z3QHy7bISBoa8Be1uuzy9hKOfcahjRI8&q=${ valor }&limit=10`)
     .subscribe((resp:any) =>{
 
-      console.log(resp);
+      console.log(resp.data);
+      this.resultados=resp.data;
       
     })
     
