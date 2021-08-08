@@ -25,7 +25,21 @@ export class GifsService {
 
   }
 
-  constructor(private http:HttpClient) {} //Importamos el modulo httpClientModule y lo inyectamos aqui en el constructor
+  constructor(private http:HttpClient) {
+
+    //El constructor se ejecuta solamente una vez porque los servicios trabajan de esa manera, por esa 
+    // razon es el lugar adecuado para cargar el localStorage
+
+    if (localStorage.getItem("historial")){
+
+      this._historial=JSON.parse(localStorage.getItem("historial")!) ;
+      //Con el signo ! le decimos a angular que es muy estricto, que esa informacion si que existe y es correcta
+    }
+
+
+
+
+  } //Importamos el modulo httpClientModule y lo inyectamos aqui en el constructor
   
 
   buscarGifs(valor:string){ //Con esta funcion vamos a introducir el valor introducido por parametro(que viene de la caja) en nuestro array de strings
@@ -35,6 +49,13 @@ export class GifsService {
 
       this._historial.unshift(valor); // Introducimos el valor al principio del array
       this._historial= this._historial.splice(0,10);
+
+
+      //Ahora intentamos que cada vez que la pagina se refresque, no se borre el historial, 
+      // para ello vamos a trabajar con el localStorage y la propiedad JSON stringify que 
+      // traduce a string cualquier valor, en este caso el objeto historial. De esta manera ya lo tendremos
+      // grabado en el localStorage, despues seguimos trabajando en el constructor
+      localStorage.setItem("historial", JSON.stringify(this._historial));
 
     }
 
