@@ -34,6 +34,14 @@ export class GifsService {
 
       this._historial=JSON.parse(localStorage.getItem("historial")!) ;
       //Con el signo ! le decimos a angular que es muy estricto, que esa informacion si que existe y es correcta
+    
+    
+    
+    }
+
+    if(localStorage.getItem("ultimos_gifs")){
+
+      this.resultados=JSON.parse(localStorage.getItem("ultimos_gifs")!);
     }
 
 
@@ -57,6 +65,8 @@ export class GifsService {
       // grabado en el localStorage, despues seguimos trabajando en el constructor
       localStorage.setItem("historial", JSON.stringify(this._historial));
 
+     
+
     }
 
      //De esta manera limitamos el historial a solo 10 elementos
@@ -75,6 +85,7 @@ export class GifsService {
       // y ya podemos trabajar con nuestro tipado.
       console.log(resp.data);
       this.resultados=resp.data;
+      localStorage.setItem("ultimos_gifs", JSON.stringify(this.resultados));
       
     })
     
