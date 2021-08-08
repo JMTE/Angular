@@ -17,4 +17,13 @@ export class SidebarComponent {
     return this.gifservice.dameHistorial;
   }
 
+  buscar(termino:string){
+
+    //Ya tenemos el gifservice inyectado, por lo tanto podemos ya utilizarlo para que cuando pinchemos en un valor
+    // del historial ya nos presente los resultados en el contenido.
+
+    this.gifservice.buscarGifs(termino);
+    
+  }
+
 }

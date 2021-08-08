@@ -13,6 +13,7 @@
       <a href="#" 
       class="list-group-item list-group-item-action"
       *ngFor="let valor of historial ; let i=index"
+      (click)="buscar(valor)"
       
       >
       <!-- "historial es el metodo getter de nuestro ts" -->

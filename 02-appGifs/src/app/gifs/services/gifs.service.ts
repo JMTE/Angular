@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { TypeScriptEmitter } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { SearchGifsResponse, Gif } from '../interfaces/gifsinterfaces';
+import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 
 @Injectable({
   providedIn: 'root'  //Permite que los servicios pueden estar definidos (nivel global) este servicio va a ser unico en el root y no voy a tener que especificarlo 
@@ -69,6 +70,8 @@ export class GifsService {
 
     }
 
+   
+
      //De esta manera limitamos el historial a solo 10 elementos
 
 
@@ -85,6 +88,9 @@ export class GifsService {
       // y ya podemos trabajar con nuestro tipado.
       console.log(resp.data);
       this.resultados=resp.data;
+
+      //Para cuando recarguemos la pagina, que nos muestre los gifs de la ultima busqueda, hay que hacer
+      // lo mismo que con la informacion de la busqueda, pero cuando ya tenemos los resultados
       localStorage.setItem("ultimos_gifs", JSON.stringify(this.resultados));
       
     })
