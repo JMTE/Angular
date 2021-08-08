@@ -1,5 +1,7 @@
 import { HttpClient } from '@angular/common/http';
+import { TypeScriptEmitter } from '@angular/compiler';
 import { Injectable } from '@angular/core';
+import { SearchGifsResponse, Gif } from '../interfaces/gifsinterfaces';
 
 @Injectable({
   providedIn: 'root'  //Permite que los servicios pueden estar definidos (nivel global) este servicio va a ser unico en el root y no voy a tener que especificarlo 
@@ -14,7 +16,7 @@ export class GifsService {
 
 
 
-  public resultados:any[]=[];
+  public resultados:Gif[]=[];
 
   get dameHistorial(){
 
@@ -45,9 +47,11 @@ export class GifsService {
     // y siempre habria que tener cuidado con los try , para ello angular tiene una herramienta, la cual tenemos
     // que descargar desde el modulo httpClientModule e inyectarla en el constructor
 
-    this.http.get(`https://api.giphy.com/v1/gifs/search?api_key=z3QHy7bISBoa8Be1uuzy9hKOfcahjRI8&q=${ valor }&limit=10`)
-    .subscribe((resp:any) =>{
-
+    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=z3QHy7bISBoa8Be1uuzy9hKOfcahjRI8&q=${ valor }&limit=10`)
+    .subscribe((resp) =>{
+      //Para realizar el tipado, utilizamos la informacion que nos da el Postman en data, lo llevamos a la 
+      // pagina quicktype y alli lo transformamos en codigo TypeScript, despues creamos la interface gifsinterfaces
+      // y ya podemos trabajar con nuestro tipado.
       console.log(resp.data);
       this.resultados=resp.data;
       
