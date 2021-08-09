@@ -1,8 +1,9 @@
-import { HttpClient } from '@angular/common/http';
+import { HttpClient, HttpParams } from '@angular/common/http';
 import { TypeScriptEmitter } from '@angular/compiler';
 import { Injectable } from '@angular/core';
 import { SearchGifsResponse, Gif } from '../interfaces/gifsinterfaces';
 import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
+
 
 @Injectable({
   providedIn: 'root'  //Permite que los servicios pueden estar definidos (nivel global) este servicio va a ser unico en el root y no voy a tener que especificarlo 
@@ -10,6 +11,9 @@ import { SidebarComponent } from '../../shared/sidebar/sidebar.component';
 export class GifsService {
 
   private apiKey :string ="z3QHy7bISBoa8Be1uuzy9hKOfcahjRI8";
+
+
+  private servicioURL :string ="https://api.giphy.com/v1/gifs";
 
   
 
@@ -81,7 +85,14 @@ export class GifsService {
     // y siempre habria que tener cuidado con los try , para ello angular tiene una herramienta, la cual tenemos
     // que descargar desde el modulo httpClientModule e inyectarla en el constructor
 
-    this.http.get<SearchGifsResponse>(`https://api.giphy.com/v1/gifs/search?api_key=z3QHy7bISBoa8Be1uuzy9hKOfcahjRI8&q=${ valor }&limit=10`)
+    //Para que el api que importamos no sea tan engorroso ni largo, angular tiene una herramienta 
+    // para simplificar este trabajo de la forma que se explica a continuacion;
+
+    const params = new HttpParams().set("api_key", this.apiKey).set("limit","10").set("q", valor)
+    
+    
+    
+    this.http.get<SearchGifsResponse>(`${this.servicioURL}/search`,{params:params})
     .subscribe((resp) =>{
       //Para realizar el tipado, utilizamos la informacion que nos da el Postman en data, lo llevamos a la 
       // pagina quicktype y alli lo transformamos en codigo TypeScript, despues creamos la interface gifsinterfaces
